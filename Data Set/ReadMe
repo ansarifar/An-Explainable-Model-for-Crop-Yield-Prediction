@@ -1,1 +1,41 @@
+We collected weather, soil, management, and yield performance data from publicly available sources for all counties of three states
+(Illinois, Indiana, Iowa) from 1990 to 2018.
 
+- Weather data were collected from the Iowa Environmental Mesonet (https://mesonet.agron.iastate.edu), which included four daily surface weather
+  parameters at 1 km^2$spatial resolution: precipitation (Prcp, mm), solar radiation (Srad, MJ/m^2), maximum temperature
+  (Tmax, C^\circ), and minimum temperature (Tmin, C^\circ). Weather data from January to March were excluded, and only
+  weeks 13 (April) to 52 (December) data were used in the model.
+
+- Soil data were acquired from the Gridded Soil Survey Geographic Database (https://gdg.sc.egov.usda.gov), which included ten parameters
+  at 1 km^2 spatial resolution: dry bulk density (BDdry, g cm^-3), clay percentage (clay, %), soil pH (pH), drained
+  upper limit (dul, mm.mm^{-1}), soil saturated hydraulic conductivity (ksat, mm/day), drained lower limit (ll, mm.mm^{-1}),
+  organic matter (om, %), sand percentage (sand, %), and saturated volumetric water content (sat, mm.mm^{-1}). All of these
+  ten parameters were available  at nine different depths of soil: 0-5, 5-10, 10-15, 15-30, 30-45, 45-60, 60-80, 80-100, and 100-120 cm.
+
+- Management data were acquired from the National Agricultural Statistics Service (https://quickstats.nass.usda.gov), which included acres
+  planted at the county-level, the weekly cumulative percentage of planting process and harvested fields at the state-level.
+
+- Yield performance data were also acquired from the National Agricultural Statistics Service (https://quickstats.nass.usda.gov)
+  which included observed average yield performance between 1980 and 2018 for corn and soybean for all 293 counties 
+  of three states of the Corn Belt: Illinois, Indiana, Iowa.
+
+We also estimated additional features using the weather and management data based on agronomic insight to help 
+enhance the performance of the model. The following weather variables were calculated from the raw weather data 
+and added to the dataset:
+
+
+- Growing degree days (Gdd, C^{\circ}), which is max{0,mean(Tmax,Tmin)-10}, which is a largely used 
+  by agronomists and faster to track crop development.
+- Number of rainy days (Rdays), which defined as the number of days with rain above 5 mm and below 24 mm in a week.
+- Number of extreme rainy days (Exrain), which is the number of days with rain above 24 mm in a week.
+- Number of heat days (Hdays), which is the number of days with Tmax above 34 C^{\circ} in a week.
+- Number of cold days (Codays), which is the number of days with Tmin below 5 C^{\circ} in a week.
+- Number of cloudy days (Cldays), which is the number of days with solar radiation below 10 MJ/m^2 in a week.
+- Heat units (Hunits), which are the summation of max{0, \text{Tmax}-34} of a week.
+
+
+Due to the lack of publicly available genotype data, we extracted two new variables using additional data from the 
+National Agricultural Statistics Service \cite{NASS} to account for genetic contributions of the crops: (1) trend of 
+historical yields and (2) trend of population density for corn and pod count for soybean. These two variables were 
+added to the management category to reflect the gene improvement \cite{duvick2005genetic}. The proposed predictive 
+model is developed to deal with both genotype and environment information while in the case study, genotype does not exist.
