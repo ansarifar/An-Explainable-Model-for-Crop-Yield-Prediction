@@ -1,0 +1,13 @@
+We designed a heuristic algorithm for this step by solving a modified version of an 
+algorithm that was designed for detecting epistatic interactions "New algorithms for detecting multi-effect and multi-way epistatic interactions".
+
+Among the set of robust features that were selected, we selected a set of spatially and temporally robust interactions.
+
+https://academic.oup.com/bioinformatics/advance-article/doi/10.1093/bioinformatics/btz463/5511839?guestAccessKey=ea86ae28-5700-490b-bbdf-32182a07fe95
+
+We used this algorithm to get robust interactin by exploring new interactions (using forward and backward stepwise
+selection) and cross validating their performance.
+
+Such process continues iteratively until a set of robust interactions has been discovered that lead to good prediction accuracy on the
+training data and generalizability on the validation data.
+
